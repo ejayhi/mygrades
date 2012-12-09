@@ -4,7 +4,8 @@ Feature: Add Category
    I want to add category weights for a class
 
 Scenario: add category
-   Given I am on the categories page
+   Given I am on the home page
+   When I follow "Categories"
    And I follow "New Category"
    And I fill in "Name" with "Homework"
    And I fill in "Weight" with "0.3"

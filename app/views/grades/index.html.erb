@@ -32,4 +32,5 @@
 <%= form_tag({:action => :upload_grade}, :multipart => true) do %>
   <%= file_field_tag 'grade_file' %>
   <%= submit_tag "Upload" %>
+  <%= link_to 'New Grade', new_grade_path %>
 <% end %>
