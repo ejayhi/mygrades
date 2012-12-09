@@ -32,5 +32,15 @@
 <%= form_tag({:action => :upload_grade}, :multipart => true) do %>
   <%= file_field_tag 'grade_file' %>
   <%= submit_tag "Upload" %><br><br>
-  <%= link_to 'New Grade', new_grade_path %>
-<% end %>
+<% end -%>
+
+  <h2>Upload Grades Using "New Grades"</h2>
+  <%= form_tag(new_grade_path, method: 'get') do %>
+      <%= select_tag( :choose_course,
+                      options_from_collection_for_select(Course.all, "id", "name"))
+       %>
+       <%= submit_tag "Choose course" %>
+  <% end -%>
+<!--  <%= collection_select :course, :course_id, Course.all, :id, :name, :prompt => "Select a Course:" %>
+   <%= link_to 'New Grade', new_grade_path %>
+   -->

@@ -25,6 +25,7 @@ class GradesController < ApplicationController
   # GET /grades/new.json
   def new
     @grade = Grade.new
+    @course = Course.find(params[:choose_course])
 
     respond_to do |format|
       format.html # new.html.erb
