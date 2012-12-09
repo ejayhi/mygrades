@@ -31,5 +31,6 @@
 <h2>Upload Grades for this assignment</h2>
 <%= form_tag({:action => :upload_grade}, :multipart => true) do %>
   <%= file_field_tag 'grade_file' %>
-  <%= submit_tag "Upload" %>
+  <%= submit_tag "Upload" %><br><br>
+  <%= link_to 'New Grade', new_grade_path %>
 <% end %>
