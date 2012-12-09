@@ -1,28 +1,25 @@
 module StudentsHelper
-	
-
 	def calc_homeworks(student_id)
 		@h_total = 0
 		@h_earned = 0
 		hHash = Hash.new()
 		hLegend = []
-			
 
 		# Calls helper function for generating modal popup id's
 		data = generate_upper_modal_div("homework")
 
 		Grade.find_all_by_student_id(student_id).each do |grade|
 			Task.find_all_by_id_and_category_id(grade.task_id, 1).each do |homework|
-					@h_total += homework.total
-					@h_earned += grade.earned
-					hLegend << generate_legend(homework, grade)
-					# Stores values into a hash
-					# Keys = homework name
-					# Values = grade percentage
-					hHash[homework.name] = calc_percentage(grade.earned, homework.total)
+				@h_total += homework.total
+				@h_earned += grade.earned
+				hLegend << generate_legend(homework, grade)
+				# Stores values into a hash
+				# Keys = homework name
+				# Values = grade percentage
+				hHash[homework.name] = calc_percentage(grade.earned, homework.total)
 			end
 		end
-						
+
 		if(!hHash.empty?)
 			# Generates total field data
 			hHash["Total"] = calc_percentage(@h_earned, @h_total)
@@ -47,11 +44,11 @@ module StudentsHelper
 	def calc_labs(student_id)
 		@l_total = 0
 		@l_earned = 0
-		
+
 		lName = []
 		lGrade = []
 		lLegend = []
-		
+
 		data ="<td><div id='lab' class='modal hide fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>"
 		data += "<div class='modal-header'><h3 id='labLabel'> Lab Breakdown</h3></div>"
 		data += "<div class='modal-body'><p>"
@@ -119,7 +116,6 @@ module StudentsHelper
 					@c_earned += grade.earned
 			end
 		end
-		#@c_total = calc_percentage(session[:hearned], session[:htotal])
 
 		if(@c_total != 0)
 			raw("<td> #{@c_total}<td>" ) 
@@ -133,11 +129,11 @@ module StudentsHelper
 	def calc_percentage(earned, total)
 		return ((earned.to_f/total.to_f)*100).round
 	end
-	
+
 	def generate_legend(homework, grade)
 		return "#{homework.name} - #{calc_percentage(grade.earned, homework.total)}% (#{grade.earned}/#{homework.total})"
 	end
-	
+
 	def generate_chart(hash, legend)
 		return	Gchart.bar(:size => '400x200',
 											 :bar_colors => '76A4FB',
@@ -155,7 +151,7 @@ module StudentsHelper
 		data = "<td><div id='#{name}' class='modal hide fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>"
 		data += "<div class='modal-header'><h3 id='#{name}Label'> #{name.capitalize} Breakdown</h3></div>"
 		data += "<div class='modal-body'><p>"
-		
+
 		return data
 	end
 	
@@ -165,6 +161,4 @@ module StudentsHelper
 		
 		return data
 	end
-	
-	
 end

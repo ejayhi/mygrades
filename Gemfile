@@ -15,27 +15,18 @@ gem 'simple-navigation'
 # for Heroku deployment - as described in Ap. A of ELLS book
 group :development, :test do
   gem 'sqlite3'
-	gem 'rspec-rails'
-	gem 'guard-rspec'
-	#gem 'wdm'
-	gem 'cucumber'
+  gem 'guard-rspec'
+  #gem 'wdm'
+  gem 'cucumber'
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
   gem 'launchy'
+  gem "rspec-rails"
+  gem "mocha", :require => false
 end
 
 group :production do
   gem 'pg'
-	gem 'guard-rspec'
-	#gem 'wdm'
-	gem 'cucumber'
-	gem 'cucumber-rails'
-  gem 'cucumber-rails-training-wheels'
-  gem 'database_cleaner'
-  gem 'launchy'
-  gem 'rspec-rails'
-  gem 'rb-inotify', :require => false
-  gem 'rb-fsevent', :require => false
 end
 
 # Gems used only for assets and not required
@@ -48,26 +39,16 @@ group :assets do
 end
 
 group :test do
-	gem 'capybara', '1.1.2'
-	gem 'rb-fchange', '0.0.5'
-  gem 'rb-notifu', '0.0.4'
+  gem 'capybara', '1.1.2'
+  gem 'rb-fchange', '0.0.5', :require => false
+  gem 'rb-notifu', '0.0.4', :require => false
   #gem 'win32console', '1.3.0'
   gem 'cucumber-rails'
-	#gem 'rb-fchange', '0.0.5'
+  #gem 'rb-fchange', '0.0.5'
   #gem 'rb-notifu', '0.0.4'
-  #gem 'win32console', '1.3.0'
-  gem 'cucumber-rails'
-end
-
-group :production do
-  gem 'pg'
 end
 
 gem 'jquery-rails'
-
-group :test do
-	gem 'capybara', '1.1.2'
-end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
