@@ -26,6 +26,7 @@ class GradesController < ApplicationController
   def new
     @grade = Grade.new
     @course = Course.find(params[:choose_course])
+    @course_id = @course.id
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,8 +42,8 @@ class GradesController < ApplicationController
   # POST /grades
   # POST /grades.json
   def create
-    @course = Course.find(params[:course_id])
-    #@grade = Grade.new(params[:grade])
+    #@course = Course.find(params[:course_id])
+    @grade = Grade.new(params[:grade])
   end
 
   # PUT /grades/1

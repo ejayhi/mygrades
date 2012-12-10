@@ -1,7 +1,40 @@
 <h1>New grade</h1>
-
+<%= "Course Selected: " %>
 <%= @course.name %>
+<br><br>
 
-<%= render 'form' %>
+<%= form_for(@grade) do |f| %>
+  <% if @grade.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@grade.errors.count, "error") %> prohibited this grade from being saved:</h2>
+
+      <ul>
+      <% @grade.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+      <%= f. @course_id %> 
+  </div>
+  <div class="field">
+	  <%= f.label :Task %>
+		<%= f.collection_select :task_id, @course.tasks.all, :id, :name, :prompt => "Select a Task" %>
+  </div>
+  <div class="field">
+	  <%= f.label :Student %>
+		<%= f.collection_select :student_id, @course.students.all, :id, :username, :prompt => "Select a Student" %>
+  </div>
+  <div class="field">
+    <%= f.label :earned %><br />
+    <%= f.number_field :earned %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<!-- <%= render 'form' %> -->
 
 <%= link_to 'Back', grades_path %>
