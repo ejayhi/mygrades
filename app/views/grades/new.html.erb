@@ -2,7 +2,6 @@
 <%= "Course Selected: " %>
 <%= @course.name %>
 <br><br>
-
 <%= form_for(@grade) do |f| %>
   <% if @grade.errors.any? %>
     <div id="error_explanation">
@@ -16,7 +15,7 @@
     </div>
   <% end %>
   <div class="field">
-      <%= f. @course_id %> 
+      <%= f.label @course.name %> 
   </div>
   <div class="field">
 	  <%= f.label :Task %>
@@ -34,7 +33,5 @@
     <%= f.submit %>
   </div>
 <% end %>
-
-<!-- <%= render 'form' %> -->
 
 <%= link_to 'Back', grades_path %>
