@@ -22,13 +22,16 @@
 		<%= f.collection_select :task_id, @course.tasks.all, :id, :name, :prompt => "Select a Task" %>
   </div>
   <div class="field">
-	  <%= f.label :Student %>
-		<%= f.collection_select :student_id, @course.students.all, :id, :username, :prompt => "Select a Student" %>
+	  <%= f.label :Students %>
+      <!--		<%= f.collection_select :student_id, @course.students.all, :id, :username, :prompt => "Select a Student" %> -->
+      <% @course.students.each  do |s| %>
+          <%= s.username  %><br>
+      <% end %><br>
   </div>
-  <div class="field">
+<!--  <div class="field">
     <%= f.label :earned %><br />
     <%= f.number_field :earned %>
-  </div>
+</div> -->
   <div class="actions">
     <%= f.submit %>
   </div>
