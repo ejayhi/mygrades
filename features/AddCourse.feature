@@ -3,7 +3,7 @@ Feature: Add Course
    As an instructor
    I want to add courses to MyGrades
 
-Scenario: add category
+Scenario: add course
    Given I am on the home page
    And I follow "Courses"
    And I follow "New Course"
